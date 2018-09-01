@@ -13,7 +13,10 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 app.get('/users', (req, res, next) => {
     User.findAll({
-        include: [ UserThing ]
+        include: [ {
+            model: UserThing,
+            include: [ Thing ] 
+        }]
     })
         .then(users => res.send(users))
         .catch(next);
