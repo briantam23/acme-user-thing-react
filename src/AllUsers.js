@@ -1,10 +1,10 @@
 import React from 'react';
 
-const UserThings = ({ users }) => {
+const AllUsers = ({ users }) => {
     return (
         <ul>
             {   
-                users.map(user => user.userThings[0]
+                users.map(user => user.userThings
                     ?(<li key={ user.id }>
                         { user.name}
                         <ul>
@@ -22,4 +22,4 @@ const UserThings = ({ users }) => {
     )
 }
 
-export default UserThings;
+export default AllUsers

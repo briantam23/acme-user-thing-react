@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import UserThings from './UserThings';
+import AllUsers from './AllUsers';
 
 class App extends React.Component {
     constructor () {
@@ -22,9 +23,9 @@ class App extends React.Component {
         console.log('hi', users)
         ev.preventDefault()
         navBar === 'Show All Users'
-        ? (this.setState({ users: [], navBar: 'Only Show Users With Things' })
+        ? (this.setState({ navBar: 'Only Show Users With Things' })
         )
-        : this.setState({ /*users,*/ navBar: 'Show All Users' });
+        : this.setState({ navBar: 'Show All Users' });
     }
     render () {
         const { users, navBar } = this.state;
@@ -36,23 +37,12 @@ class App extends React.Component {
                 <form onSubmit={ handleSubmit }>
                     <button>{ navBar }</button>
                 </form>
-                <ul>
-                    {   
-                        users.map(user => user.userThings 
-                            ?(<li key={ user.id }>
-                                { user.name}
-                                <ul>
-                                    { 
-                                        user.userThings.map(userThing => <li key={ userThing.id }>
-                                            { userThing.thing.name }
-                                        </li>)
-                                    }
-                                </ul>
-                            </li>)
-                            : null
-                        )
-                    }
-                </ul>
+                {
+                    navBar === 'Only Show Users With Things'
+                    ? <AllUsers users={ users } />
+                    : <UserThings users={ users } />
+                }
+
             </div>
         )
     }
