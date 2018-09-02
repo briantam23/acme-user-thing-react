@@ -18,19 +18,15 @@ class App extends React.Component {
             .then(users => this.setState({ users }));
     }
     handleSubmit (ev) {
-        const { users, navBar } = this.state;
-        //const _users = users.filter(user => user.userThings);
-        console.log('hi', users)
-        ev.preventDefault()
+        const { navBar } = this.state;
+        ev.preventDefault();
         navBar === 'Show All Users'
-        ? (this.setState({ navBar: 'Only Show Users With Things' })
-        )
-        : this.setState({ navBar: 'Show All Users' });
+        ? this.setState({ navBar: 'Only Show Users With Things' })
+        : this.setState({ navBar: 'Show All Users' })
     }
     render () {
         const { users, navBar } = this.state;
         const { handleSubmit } = this;
-        console.log(users)
         return (
             <div>
                 <h1>Acme Users and Things - React</h1>
@@ -42,7 +38,6 @@ class App extends React.Component {
                     ? <AllUsers users={ users } />
                     : <UserThings users={ users } />
                 }
-
             </div>
         )
     }
